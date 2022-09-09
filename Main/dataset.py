@@ -27,7 +27,8 @@ def random_pick(list, probabilities):
 
 
 class WeiboDataset(Dataset):
-    def __init__(self, root, bert_tokenizer, bert_model, probabilities, clean=True, droprate=0.0, join_source=False, mask_source=False,
+    def __init__(self, root, bert_tokenizer, bert_model, probabilities, clean=True, droprate=0.0, join_source=False,
+                 mask_source=False,
                  drop_mask_rate=0.0):
         self.root = root
         self.raw_dir = os.path.join(self.root, 'raw')

@@ -124,10 +124,6 @@ if __name__ == '__main__':
     log = open(log_path, 'w')
     log_dict = create_log_dict(args)
 
-    bert_tokenizer, bert_model, bert_config = load_bert(bert_path)
-    bert_model.to(device)
-    bert_model.eval()
-
     for run in range(runs):
         write_log(log, f'run:{run}')
         log_record = {'run': run, 'val accs': [], 'test accs': [], 'test prec T': [], 'test prec F': [],
@@ -138,11 +134,16 @@ if __name__ == '__main__':
         elif dataset == 'Weibo-2class' or dataset == 'Weibo-2class-long':
             sort_weibo_2class_dataset(label_source_path, label_dataset_path, k)
 
+        bert_tokenizer, bert_model, bert_config = load_bert(bert_path)
+        bert_model.to(device)
+
         train_dataset = WeiboDataset(train_path, bert_tokenizer, bert_model, probabilities=args.probabilities,
                                      droprate=args.droprate, join_source=args.join_source,
                                      mask_source=args.mask_source, drop_mask_rate=args.drop_mask_rate)
         val_dataset = WeiboDatasetTest(val_path, bert_tokenizer, bert_model, join_source=args.join_source)
         test_dataset = WeiboDatasetTest(test_path, bert_tokenizer, bert_model, join_source=args.join_source)
+
+        bert_model.to('cpu')
 
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
         val_loader = DataLoader(val_dataset, batch_size=batch_size)

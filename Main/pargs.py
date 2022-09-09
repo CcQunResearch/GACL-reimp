@@ -26,7 +26,7 @@ def pargs():
     parser.add_argument('--out_feats', type=int, default=128)
     # 0.3/0.6
     parser.add_argument('--t', type=float, default=0.6)
-    # [0.5,0.3,0.2]/[0.7, 0.2, 0.1]
+    # [0.5, 0.3, 0.2]/[0.7, 0.2, 0.1]
     parser.add_argument('--probabilities', type=list, default=[0.7, 0.2, 0.1])
 
     parser.add_argument('--lr', type=float, default=0.0005)

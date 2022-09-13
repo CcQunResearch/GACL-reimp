@@ -61,6 +61,9 @@ def create_log_dict(args):
     log_dict['hid_feats'] = args.hid_feats
     log_dict['out_feats'] = args.out_feats
 
+    log_dict['t'] = args.t
+    log_dict['probabilities'] = args.probabilities
+
     log_dict['lr'] = args.lr
     log_dict['epochs'] = args.epochs
     log_dict['weight_decay'] = args.weight_decay

@@ -39,6 +39,9 @@ if __name__ == '__main__':
             print('hid_feats', log['hid_feats'])
             print('out_feats', log['out_feats'])
 
+            print('t', log['t'])
+            print('probabilities', log['probabilities'])
+
             print('lr', log['lr'])
             print('epochs', log['epochs'])
             print('weight_decay', log['weight_decay'])
